@@ -1,0 +1,63 @@
+---
+title: What is PacketEvents?
+description: Introduction to PacketEvents.
+---
+
+import {Image} from "astro:assets";
+import reviewOne from "../../../assets/reviews/review1.png"
+import reviewTwo from "../../../assets/reviews/review2.png"
+import reviewThree from "../../../assets/reviews/review3.png"
+import reviewFour from "../../../assets/reviews/review4.png"
+
+## Minecraft Protocol Library
+
+PacketEvents is a protocol library tailored to Minecraft Java Edition, designed to facilitate the processing and
+transmission of packets. The library was founded by [retrooper](https://github.com/retrooper) on April 17, 2020. The
+project, PacketEvents, relies on Netty, a network application framework. This strategic choice imbues PacketEvents with
+versatility, allowing developers to use it on a range of Minecraft platforms powered by Netty, such as _Paper, Spigot,
+Velocity, BungeeCord, Fabric, and Sponge_.
+
+### A New Beginning
+
+Our goal with _PacketEvents 2.0_ was to make code efficient and portable. We wanted developers to write code once and
+run it on multiple platforms. Since PacketEvents depends on Netty, it's possible for developers to write their own
+Minecraft server implementation without worrying too much about networking.
+
+### The PacketEvents Team
+
+| Role               | Member                                    |
+|--------------------|-------------------------------------------|
+| Project Lead       | [retrooper](https://github.com/retrooper) |
+| Project Maintainer | [booky](https://github.com/booky10)       |
+
+## What People Have to Say About PacketEvents
+
+<iframe
+    src="https://www.youtube.com/embed/KdYp0HuIxbU" frameborder="0" allowfullscreen
+    style={{width: "100%", height: "auto", aspectRatio: "1920/1080"}}
+/>
+
+### Selected Reviews
+
+<div className={"flex flex-col gap-3 w-full"}>
+    <Image
+        src={reviewOne}
+        loading={"lazy"}
+        alt={"Amazing API, very responsive and friendly developer. I have always had very little issues and retrooper fixes them promptly when they do arise. ~frap"}
+    />
+    <Image
+        src={reviewTwo}
+        loading={"lazy"}
+        alt={"I think this plugin is perfect for beginners or even experts. It's much more easy to use, maintainable, readable compared with ProtocolLib. I don't say that ProtocolLib is totally worse but for me if anyone ask me which to use, no need to hestitate, this is the optimal option. ~gojosatoru72"}
+    />
+    <Image
+        src={reviewThree}
+        loading={"lazy"}
+        alt={"I recommend PacketEvents to anyone wanting to use packets in their plugin(s) for literally anything. There is no better alternative, in my opinion. ~JonesDevelopment"}
+    />
+    <Image
+        src={reviewFour}
+        loading={"lazy"}
+        alt={"The API is by far the best I've seen for listening to packets. Very simple to use and to get into. ~AoElite"}
+    />
+</div>
