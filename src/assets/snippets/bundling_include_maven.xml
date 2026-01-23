@@ -1,0 +1,38 @@
+<plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.6.1</version>
+        <executions>
+            <execution>
+                <phase>package</phase>
+                <goals>
+                    <goal>shade</goal>
+                </goals>
+                <configuration>
+                    <minimizeJar>false</minimizeJar>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <relocations>
+                        <relocation>
+                            <pattern>com.github.retrooper</pattern>
+                            <shadedPattern>my.domain.myplugin.libs.packetevents</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>io.github.retrooper</pattern>
+                            <shadedPattern>my.domain.myplugin.libs.packetevents</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>net.kyori</pattern>
+                            <shadedPattern>my.domain.myplugin.libs.kyori</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.google.gson</pattern>
+                            <shadedPattern>my.domain.myplugin.libs.gson</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+    <!-- your other plugins... -->
+</plugins>

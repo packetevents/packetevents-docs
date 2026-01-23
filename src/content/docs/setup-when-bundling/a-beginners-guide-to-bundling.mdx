@@ -1,0 +1,118 @@
+---
+title: A Beginner's Guide to Bundling
+---
+
+import {TabItem, Tabs, Code, Steps} from "@astrojs/starlight/components";
+import codeBundlingMaven from '../../../assets/snippets/bundling_maven.xml?raw';
+import codeBundlingGradle from '../../../assets/snippets/bundling_gradle.kts?raw';
+import codeBundlingIncludeMaven from '../../../assets/snippets/bundling_include_maven.xml?raw';
+import codeBundlingIncludeGradle from '../../../assets/snippets/bundling_include_gradle.kts?raw';
+import codeBundlingMinimizeMaven from '../../../assets/snippets/bundling_minimize_maven.diff?raw';
+import codeBundlingMinimizeGradle from '../../../assets/snippets/bundling_minimize_gradle.kts?raw';
+
+So, you've decided you want to bundle PacketEvents in your distribution file. If you do not wish to bundle, please skip
+this section. There are a few things you need to do to avoid running into issues when bundling. Here's a summary of the steps:
+
+:::note[A note about Fabric]
+Please use fabric jar-in-jar mods for including the PacketEvents mod. This is not covered
+by this documentation page in its current state.
+:::
+
+<Steps>
+    <ol>
+        <li>
+            <h4>Setup Maven/Gradle</h4>
+            You will need to set up Maven/Gradle in a particular way if you desire to bundle PacketEvents.
+        </li>
+        <li>
+            <h4>Add Necessary Soft Dependencies</h4>
+            You must configure your plugin in such a way that it loads after a certain set of plugins. This way, you
+            avoid running into issues when bundling.
+        </li>
+        <li>
+            <h4>Relocate PacketEvents</h4>
+            You need to relocate PacketEvents' packages to avoid version conflicts. Do not assume that you're the only
+            one bundling.
+        </li>
+        <li>
+            <h4>Minimize PacketEvents (not recommended)</h4>
+            You may optionally minimize PacketEvents to reduce the size of your project. This process will remove
+            classes within PacketEvents that are unused.
+        </li>
+    </ol>
+</Steps>
+
+### 1. Setup Maven/Gradle for Bundling
+
+<Tabs>
+    <TabItem label={"Maven"}>
+        <Code code={codeBundlingMaven} del={"INSERT_MODULE_HERE"} title={"pom.xml"} lang={"xml"}/>
+    </TabItem>
+    <TabItem label={"Gradle"}>
+        <Code code={codeBundlingGradle} del={"INSERT_MODULE_HERE"} title={"build.gradle[.kts]"} lang={"kt"}/>
+    </TabItem>
+</Tabs>
+
+:::caution[Warning]
+The Maven/Gradle code sections above include the placeholder <span className="text-red-700">**'INSERT_MODULE_HERE'**</span>;
+please replace it with one of the supported modules.
+:::
+
+### 2. Add Necessary Soft Dependencies
+
+If you're developing for Bukkit-based platforms, this section was written for you. It's very important that you
+configure your `plugin.yml` in such a way that it has the following plugins as soft dependencies:
+
+```yml
+# plugin.yml
+softdepend:
+- ProtocolLib
+- ProtocolSupport
+- ViaVersion
+- ViaBackwards
+- ViaRewind
+- Geyser-Spigot
+```
+
+The reason we're adding these plugins as soft dependencies is so that your plugin loads after these plugins are
+loaded (if present on the server). The PacketEvents injector requires these plugins to be loaded before it starts the
+network injection process. Failure to add these soft dependencies can lead to exceptions and software malfunctions.
+
+### 3. Relocate PacketEvents
+
+We need to relocate PacketEvents' packages. This step is required so that we can avoid any version conflicts. It's possible
+that PacketEvents is already present on your server; thus, we must account for version conflicts. This can be achieved
+by configuring the [Maven Shade Plugin for Apache Maven](https://maven.apache.org/plugins/maven-shade-plugin/)
+or [Shadow Plugin for Gradle](https://gradleup.com/shadow/).
+
+<Tabs>
+    <TabItem label={"Maven"}>
+        <Code code={codeBundlingIncludeMaven} del={"my.domain.myplugin"} title={"pom.xml"} lang={"xml"}/>
+    </TabItem>
+    <TabItem label={"Gradle"}>
+        <Code code={codeBundlingIncludeGradle} del={"my.domain.myplugin"} title={"build.gradle[.kts]"} lang={"kt"}/>
+    </TabItem>
+</Tabs>
+
+### 4. Minimize PacketEvents (optional)
+
+Last but not least, you can minimize PacketEvents. Unused PacketEvents classes will be discarded from your
+distribution file, allowing you to save a little space. Please note that this is **not recommended** and sometimes
+cause some classloading issues to occur.
+
+<Tabs>
+    <TabItem label={"Maven"}>
+        <Code code={codeBundlingMinimizeMaven} title={"pom.xml"} lang={"diff"} meta={"lang=\"xml\""}/>
+    </TabItem>
+    <TabItem label={"Gradle"}>
+        <Code code={codeBundlingMinimizeGradle} title={"build.gradle.kts"} lang={"kt"}/>
+    </TabItem>
+</Tabs>
+
+### Testing
+
+Now, you've hopefully successfully relocated PacketEvents. Please ensure that your output or distribution file contains
+PacketEvents packages, which contain '`com.github.retrooper`' and '`io.github.retrooper`'. The package containing
+'`com.github.retrooper`' refers to the PacketEvents cross-platform API. These are API features that work on every platform.
+The package that contains '`io.github.retrooper`' refers to the implementation of PacketEvents.
+Without an implementation, PacketEvents cannot function.

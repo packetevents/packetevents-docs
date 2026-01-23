@@ -3,10 +3,12 @@ title: Development Setup
 description: Setup PacketEvents
 ---
 
-import {TabItem, Tabs} from "@astrojs/starlight/components";
-
+import {TabItem, Tabs, Code} from "@astrojs/starlight/components";
+import codeDependencyMaven from '../../../assets/snippets/dependency_maven.xml?raw';
+import codeDependencyGradle from '../../../assets/snippets/dependency_gradle.kts?raw';
 
 ## Maven and Gradle
+
 
 You can add PacketEvents as a dependency using [Apache Maven](https://maven.apache.org/)
 or [Gradle](https://gradle.org/) (recommended). These build tools can help you build your project, which may rely on
@@ -31,45 +33,10 @@ modules that we support:
 
 <Tabs>
     <TabItem label={"Maven"}>
-        ```xml del="INSERT_MODULE_HERE"
-        // pom.xml
-        <repositories>
-            <repository>
-                <id>codemc-releases</id>
-                <url>https://repo.codemc.io/repository/maven-releases/</url>
-            </repository>
-            <repository>
-                <id>codemc-snapshots</id>
-                <url>https://repo.codemc.io/repository/maven-snapshots/</url>
-            </repository>
-            <!-- your other repositories... -->
-        </repositories>
-        <!-- ... -->
-        <dependencies>
-            <dependency>
-                <groupId>com.github.retrooper</groupId>
-                <artifactId>packetevents-INSERT_MODULE_HERE</artifactId>
-                <version>2.11.1</version>
-                <scope>compile</scope>
-            </dependency>
-            <!-- your other dependencies... -->
-        </dependencies>
-        ```
+        <Code code={codeDependencyMaven} del={"INSERT_MODULE_HERE"} title={"pom.xml"} lang={"xml"}/>
     </TabItem>
     <TabItem label={"Gradle"}>
-        ```kts del="INSERT_MODULE_HERE"
-        // build.gradle[.kts]
-        repositories {
-            maven { url = uri("https://repo.codemc.io/repository/maven-releases/") }
-            maven { url = uri("https://repo.codemc.io/repository/maven-snapshots/") }
-            // your other repositories...
-        }
-
-        dependencies {
-            compileOnly("com.github.retrooper:packetevents-INSERT_MODULE_HERE:2.11.1")
-            // your other dependencies...
-        }
-        ```
+        <Code code={codeDependencyGradle} del={"INSERT_MODULE_HERE"} title={"build.gradle[.kts]"} lang={"kt"}/>
     </TabItem>
 </Tabs>
 
