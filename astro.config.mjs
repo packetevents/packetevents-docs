@@ -22,9 +22,39 @@ export default defineConfig({
             editLink: {
                 baseUrl: "https://github.com/packetevents/packetevents-docs/edit/main/",
             },
-            components: {
-                Head: "./src/components/Head.astro",
-            },
+            head: [
+                {
+                    tag: "link",
+                    attrs: {
+                        rel: "apple-touch-icon",
+                        sizes: "180x180",
+                        href: "/apple-touch-icon.png",
+                    },
+                },
+                {
+                    tag: "link",
+                    attrs: {
+                        rel: "icon",
+                        sizes: "32x32",
+                        href: "/favicon-32x32.png",
+                    },
+                },
+                {
+                    tag: "link",
+                    attrs: {
+                        rel: "icon",
+                        sizes: "16x16",
+                        href: "/favicon-16x16.png",
+                    },
+                },
+                {
+                    tag: "link",
+                    attrs: {
+                        rel: "manifest",
+                        href: "/site.webmanifest",
+                    },
+                },
+            ],
             favicon: "./favicon.ico",
             title: "packetevents",
             social: [
