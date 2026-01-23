@@ -17,6 +17,7 @@ export default defineConfig({
 
     integrations: [
         starlight({
+            credits: true,
             components: {
                 Head: "./src/components/Head.astro",
             },
