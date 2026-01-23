@@ -53,8 +53,8 @@ export default defineConfig({
                     label: "Processing and Sending",
                     items: [
                         "processing-and-sending/master",
-                        "sending-and-simulating-packets",
                         "processing-and-sending/advanced-packetevents-example-combining-our-knowledge",
+                        "sending-and-simulating-packets",
                         "faq",
                     ],
                 },
