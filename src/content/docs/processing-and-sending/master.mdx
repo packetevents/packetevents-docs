@@ -1,0 +1,88 @@
+---
+title: Introduction to Packet Listeners
+description: Learn about the PacketEvents instance.
+---
+
+import {Image} from "astro:assets";
+import {Code, TabItem, Tabs} from "@astrojs/starlight/components";
+import clientboundSetHealthPacket from "../../../assets/images/clientbound_set_health_packet.png";
+import codeExampleDummyListener from "../../../assets/snippets/ExampleListenerDummy.java?raw";
+import codeExampleHealthListener from "../../../assets/snippets/ExampleListenerHealth.java?raw";
+import codeExampleInteractListener from "../../../assets/snippets/ExampleListenerInteract.java?raw";
+import codeListenerBundledPlugin from "../../../assets/snippets/ListenerBundledPacketEventsBukkitPlugin.java?raw";
+import codeListenerPlugin from "../../../assets/snippets/ListenerPacketEventsBukkitPlugin.java?raw";
+
+## Interception
+
+In networking, we typically distinguish between packets sent to the client and packets sent to the server. There are
+certain packets that only the client can parse, and there exist some that can only be parsed by the server. It's
+important that we send the right packets to avoid running into issues. If we fail to notice this difference, the worst
+that could happen is (a) the client gets kicked because it fails to parse a packet or (b) the client crashes, also
+failing to parse a packet.
+
+All communication between the client and the server is through packets. PacketEvents allows us to read what's being sent
+between the client and server. But it doesn't end there. We also have the opportunity to alter data being sent. We will
+expand on more interesting features offered by PacketEvents at a later point. Now, are you ready to intercept some
+packets?
+
+Here's an example of how we could intercept a health-related Minecraft packet. Take a moment to read it through, and see
+if you understand what's going on.
+
+<Code code={codeExampleDummyListener} title="ExampleListener.java" lang="java"/>
+
+:::note
+Mojang ([as well as the wiki](https://minecraft.wiki/w/Java_Edition_protocol/Packets?oldid=3390605#Set_Health))
+calls this the clientbound `set_health` packet.
+:::
+
+As you may have guessed, the packet processor above has a condition that checks whether the 'Update Health' (also known
+as 'Set Health') packet was sent. If that condition holds true, then the code parses the packet, obtaining the 'health.'
+At the time of writing, here's how the Minecraft Protocol Wiki describes this packet:
+
+<Image
+    src={clientboundSetHealthPacket}
+    loading={"lazy"}
+    alt={"A screenshot of the Minecraft Protocol Wiki, showcasing the clientbound set_health packet"}
+/>
+
+The packet is sent by the server to the client, and it tells the client what its health should be. If we decided we
+wanted to trick the client (for educational purposes) and provide it with a false health value (such as 15), we could
+easily do so like this:
+
+<Code code={codeExampleHealthListener} title="ExampleListener.java" lang="java"/>
+
+:::caution[Warning]
+When you modify a packet, make sure you run:
+
+```java
+event.markForReEncode(true);
+```
+
+This tells PacketEvents to actually write your changes, otherwise your changes may be lost.
+:::
+
+As shown, packet modification is also simple to implement with PacketEvents. Let's code a (slightly) more useful task
+using PacketEvents. The following code intercepts the 'Interact Entity' packet, which is sent whenever the client
+interacts with or attacks an entity, and then sends a message to the client informing them that they have attacked an
+entity:
+
+<Code code={codeExampleInteractListener} title="ExampleListener.java" lang="java"/>
+
+As you may have noticed, PacketEvents provided us with an entity ID. We used the conversion system to convert it into a
+Bukkit entity so we can assess the name of the entity. Lastly, we sent the message using the Adventure API (which is
+embedded in PacketEvents). The Adventure API is also available on all Paper-based software, you can learn more
+about it [here](https://docs.papermc.io/adventure/). If you're confused about the entity IDs and
+the conversion system, refer to [this](../introduction/a-developers-introduction#entity-id-system).
+
+### What's Next?
+
+We've successfully written a packet listener! What's next? We need to register the listener:
+
+<Tabs>
+    <TabItem label={"Normal"}>
+        <Code code={codeListenerPlugin} title="YourBukkitPlugin.java" lang="java"/>
+    </TabItem>
+    <TabItem label={"If Bundling"}>
+        <Code code={codeListenerBundledPlugin} title="YourBukkitPlugin.java" lang="java"/>
+    </TabItem>
+</Tabs>

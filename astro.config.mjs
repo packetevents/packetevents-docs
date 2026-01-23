@@ -11,6 +11,10 @@ export default defineConfig({
     compressHTML: process.env.NODE_ENV === "production",
     trailingSlash: "ignore",
 
+    image: {
+        responsiveStyles: true,
+    },
+
     integrations: [
         starlight({
             components: {
@@ -28,15 +32,28 @@ export default defineConfig({
             },
             sidebar: [
                 {
-                    label: "Guides",
+                    label: "Introduction",
                     items: [
-                        // Each item here is one entry in the navigation menu.
-                        {label: "Example Guide", slug: "guides/example"},
+                        "introduction",
+                        "introduction/prerequisites",
+                        "introduction/development-setup",
+                        "introduction/the-problem-of-bundling",
+                        "introduction/a-developers-introduction",
                     ],
                 },
                 {
-                    label: "Reference",
-                    autogenerate: {directory: "reference"},
+                    label: "Setup when Bundling",
+                    items: [
+                        "setup-when-bundling/a-beginners-guide-to-bundling",
+                        "setup-when-bundling/master",
+                        "setup-when-bundling/tweaking-packetevents",
+                    ],
+                },
+                {
+                    label: "Processing and Sending",
+                    items: [
+                        "processing-and-sending/master",
+                    ],
                 },
             ],
         }),
