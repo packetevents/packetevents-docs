@@ -34,7 +34,7 @@ export default defineConfig({
                 {
                     label: "Introduction",
                     items: [
-                        "introduction",
+                        "",
                         "introduction/prerequisites",
                         "introduction/development-setup",
                         "introduction/the-problem-of-bundling",
