@@ -1,8 +1,11 @@
 ---
-const { head } = Astro.locals.starlightRoute;
+import "../styles/global.css";
+
+const {head} = Astro.locals.starlightRoute;
 ---
 
-{head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
+{head.map(({ tag: Tag, attrs, content }) =>
+<Tag {...attrs} set:html={content}/>)}
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

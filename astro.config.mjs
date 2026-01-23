@@ -2,16 +2,19 @@
 import {defineConfig} from "astro/config";
 import starlight from "@astrojs/starlight";
 
+import tailwindcss from "@tailwindcss/vite";
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://packetevents-docs.pages.dev",
     output: "static",
     compressHTML: process.env.NODE_ENV === "production",
     trailingSlash: "ignore",
+
     integrations: [
         starlight({
             components: {
-                Head: "./src/components/Head.astro"
+                Head: "./src/components/Head.astro",
             },
             favicon: "./favicon.ico",
             title: "packetevents",
@@ -38,4 +41,10 @@ export default defineConfig({
             ],
         }),
     ],
+
+    vite: {
+        plugins: [tailwindcss({
+            optimize: true,
+        })],
+    },
 });
