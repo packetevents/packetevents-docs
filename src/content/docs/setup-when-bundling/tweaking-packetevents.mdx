@@ -1,0 +1,84 @@
+---
+title: Tweaking PacketEvents
+description: Learn how to configure PacketEvents to function as you desire.
+---
+
+import {Code} from "@astrojs/starlight/components";
+import codeTweakedBukkitPlugin from '../../../assets/snippets/TweakedPacketEventsBukkitPlugin.java?raw';
+
+## Theory of Settings
+
+Settings in your PacketEvents instance dictate the way the library behaves. We've listed all the settings below with a brief description of what they affect.
+
+:::caution[Warning]
+Modifying settings while PacketEvents is not bundled can lead to incompatibilities with other plugins.
+:::
+
+### Check for Updates
+
+The '[checkForUpdates](https://javadocs.packetevents.com/com/github/retrooper/packetevents/settings/PacketEventsSettings.html#checkForUpdates(boolean))' setting controls whether PacketEvents should compare the local version against the latest release using GitHub's API. PacketEvents will then inform server administrators through the console whether the installation is up-to-date, outdated, or identified as a development build. It's strongly recommended to keep this enabled so administrators are notified whenever a new update becomes available.
+
+### Re-Encode By Default
+
+The '[reEncodeByDefault](https://javadocs.packetevents.com/com/github/retrooper/packetevents/settings/PacketEventsSettings.html#reEncodeByDefault(boolean))' setting determines whether PacketEvents listeners automatically have permission to modify packet data. When this setting is enabled, listeners can change data without explicitly marking the event as modified (or as re-encoded). When it is disabled, each event must be manually marked as modified before any packet modifications will be applied. If you're bundling PacketEvents, we suggest you toggle this setting off to improve PacketEvents' performance. If you're not bundling PacketEvents, you will find this setting on by default to remain in line with backwards compatibility. The default value of this setting may change in the future.
+
+### Downsample Colors
+
+TODO
+
+### Custom Resource Provider
+
+TODO
+
+### Debug
+
+The '[debug](https://javadocs.packetevents.com/com/github/retrooper/packetevents/settings/PacketEventsSettings.html#debug(boolean))' setting controls whether PacketEvents should print debug messages to the console. When enabled, information about connecting clients may be logged.
+
+### Full Stack Trace
+
+The '[fullStackTrace](https://javadocs.packetevents.com/com/github/retrooper/packetevents/settings/PacketEventsSettings.html#fullStackTrace(boolean))' setting controls whether PacketEvents should print full stack traces whenever an exception occurs. It's generally best to disable this in production to avoid exception spam, which can negatively impact server performance.
+
+### Kick if Terminated
+
+The '[kickIfTerminated](https://javadocs.packetevents.com/com/github/retrooper/packetevents/settings/PacketEventsSettings.html#kickIfTerminated(boolean))' configuration option controls whether PacketEvents should block players from joining the server while its instance is terminated or otherwise inactive. We recommend keeping this enabled as an additional safeguard to prevent players from connecting before PacketEvents is fully operational.
+
+### Kick on Packet Exception
+
+The '[kickOnPacketException](https://javadocs.packetevents.com/com/github/retrooper/packetevents/settings/PacketEventsSettings.html#kickOnPacketException(boolean))' setting controls whether PacketEvents should disconnect a client when it fails to process data received from that client. When this option is enabled, PacketEvents proactively kicks any client that sends invalid data.
+
+### Timestamp Mode
+
+The '[timestampMode](https://javadocs.packetevents.com/com/github/retrooper/packetevents/settings/PacketEventsSettings.html#timeStampMode(com.github.retrooper.packetevents.util.TimeStampMode))' setting controls the level of precision used when recording event timestamps. Every event in PacketEvents includes a timestamp, and this option lets developers choose the unit of time used for those measurements. In essence, it determines how precise each event’s timestamp should be. The available options are `MILLIS`, which records timestamps in milliseconds, `NANO`, which records them in nanoseconds, and `NONE`, which disables timestamping entirely.
+
+## Default Values for PacketEvents Settings
+
+| Setting | Default Value |
+| - | - |
+| `reEncodeByDefault` | `true` |
+| `checkForUpdates` | `true` |
+| `downsampleColors` | `false` |
+| `debug` | `false` |
+| `fullStackTrace` | `false` |
+| `kickOnPacketException` | `true` |
+| `kickIfTerminated` | `true` |
+| `timestampMode` | `MILLIS` |
+
+## Practical Guide to Settings
+
+Here is how you access the current PacketEvents settings. Configuration should be done prior to loading the PacketEvents instance.
+
+```java
+PacketEventsSettings settings = instance.getSettings();
+// e.g. disable checking for updates
+settings.checkForUpdates(false);
+// you can also modify multiple settings at once:
+settings.checkForUpdates(true).debug(false).timeStampMode(TimeStampMode.MILLIS);
+```
+
+## End Result
+
+<Code code={codeTweakedBukkitPlugin} title={"YourBukkitPlugin.java"} lang={"java"}/>
+
+:::note
+You can find examples on our [example repository](https://github.com/retrooper/packetevents-example).
+:::

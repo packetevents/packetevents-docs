@@ -1,0 +1,32 @@
+---
+title: Creating a PacketEvents Instance
+description: Learn about the PacketEvents instance.
+---
+
+import {Code} from "@astrojs/starlight/components";
+import codeInitializingBukkitPlugin from '../../../assets/snippets/InitializingPacketEventsBukkitPlugin.java?raw';
+import codeInitializingVelocityPlugin from '../../../assets/snippets/InitializingPacketEventsVelocityPlugin.java?raw';
+
+## Do You Need a PacketEvents Instance?
+
+Many features offered by PacketEvents are accessible through a PacketEvents instance. Depending on your setup, you may have to create your own PacketEvents instance as soon as your mod/plugin launches. If you're bundling PacketEvents in your distribution file, then you need to create a PacketEvents instance. If you're not bundling, then do not create an instance. The user will have to proactively install PacketEvents, and PacketEvents will create an instance for you.
+
+If you're not bundling, you can ignore this page.
+
+The PacketEvents instance allows you to access functionality within our API. This instance can be created using a PacketEventsBuilder. Each platform has its own PacketEventsBuilder, and each builder carries its own implementation of the PacketEvents library.
+
+:::note[Hint]
+E.g. `SpigotPacketEventsBuilder` (for Bukkit-based platforms)
+:::
+
+## Basic Example
+
+The PacketEvents instance provides two methods for initialization: `load` and `init`. You must call `load` before calling `init`. PacketEvents also provides a termination method, `terminate`, which should be called when your plugin shuts down.
+
+Below is an example of how to properly initialize and terminate PacketEvents in the `Main` class on Bukkit‑based platforms:
+
+<Code code={codeInitializingBukkitPlugin} title={"YourBukkitPlugin.java"} lang={"java"} />
+
+Below is an example of initialization and termination of PacketEvents for a non-Bukkit-based platform, like Velocity:
+
+<Code code={codeInitializingVelocityPlugin} title={"YourVelocityPlugin.java"} lang={"java"} />
