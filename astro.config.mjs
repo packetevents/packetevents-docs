@@ -18,6 +18,10 @@ export default defineConfig({
     integrations: [
         starlight({
             credits: true,
+            lastUpdated: true,
+            editLink: {
+                baseUrl: "https://github.com/packetevents/packetevents-docs/edit/main/",
+            },
             components: {
                 Head: "./src/components/Head.astro",
             },
