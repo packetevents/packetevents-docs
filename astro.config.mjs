@@ -25,6 +25,7 @@ export default defineConfig({
             ],
             components: {
                 Head: "./src/components/overrides/Head.astro",
+                Search: "./src/components/overrides/Search.astro",
             },
             credits: true,
             lastUpdated: true,
