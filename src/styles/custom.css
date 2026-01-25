@@ -6,7 +6,7 @@
 
     /* CHANGE FONT SIZE HERE */
     --sl-text-base: 1.3rem;
-    --sl-text-sm: 0.99rem;  
+    --sl-text-sm: 0.99rem;
 }
 
 /* https://github.com/PaperMC/docs/blob/9ea4338f089fddce0e38e7e130a869c7066c9b14/src/styles/custom.css#L55-L60 */
@@ -14,5 +14,12 @@
 @media (min-width: 96rem) {
     :root {
         --sl-content-width: 64rem;
+    }
+}
+
+/* fix missing padding for edit page button */
+@layer ion {
+    .meta {
+        padding-inline: var(--sl-content-pad-x);
     }
 }
