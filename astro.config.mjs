@@ -7,7 +7,7 @@ import {ion} from "starlight-ion-theme";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://packetevents-docs.pages.dev",
+    site: "https://docs.packetevents.com",
     output: "static",
     compressHTML: process.env.NODE_ENV === "production",
     trailingSlash: "ignore",
