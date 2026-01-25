@@ -1,0 +1,13 @@
+@layer base, starlight, theme, components, utilities;
+
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* https://github.com/PaperMC/docs/blob/9ea4338f089fddce0e38e7e130a869c7066c9b14/src/styles/custom.css#L55-L60 */
+/* fix too large TOC on large screens */
+@media (min-width: 96rem) {
+    :root {
+        --sl-content-width: 64rem;
+    }
+}
