@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=../../../.astro/collections/redirects.schema.json
+getting-started: /introduction/development-setup/
+prerequisites: /introduction/prerequisites/
+master: /setup-when-bundling/master/
+creating-your-packetevents-instance: /setup-when-bundling/master/
+creating-your-packetevents-instance/specifying-packetevents-settings: /setup-when-bundling/tweaking-packetevents/
+what-is-a-packetevents-listener: /processing-and-sending/master/
+creating-your-first-listener: /processing-and-sending/master/
+registering-a-packet-listener: /processing-and-sending/master/
+advanced-packetevents-example-combining-our-knowledge: /processing-and-sending/advanced-packetevents-example-combining-our-knowledge/
