@@ -95,7 +95,7 @@ World world = null; // Can be null! (Providing a world can allow for faster sear
 Entity bukkitEntity = SpigotConversionUtil.getEntityById(world, entityId);
 
 // Now, we can access some data using Bukkit.
-String entityName =[development-setup.mdx](development-setup.mdx) bukkitEntity.getName();
+String entityName = bukkitEntity.getName();
 ```
 
 :::caution[Thread Safety]
