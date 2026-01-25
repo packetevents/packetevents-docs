@@ -492,6 +492,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource-variable/space-grotesk@npm:^5.2.10":
+  version: 5.2.10
+  resolution: "@fontsource-variable/space-grotesk@npm:5.2.10"
+  checksum: 10c0/976123dc55a4c73d1986e0ca0c3f6210862cc48ebbec0fc4ba416f17195452e661e40504436ad4972692d34c530e1833cd5e9a0e377b4b9b062b781c6a4eeb74
+  languageName: node
+  linkType: hard
+
 "@iconify/tools@npm:^4.0.5, @iconify/tools@npm:^4.1.1":
   version: 4.2.0
   resolution: "@iconify/tools@npm:4.2.0"
@@ -4101,6 +4108,7 @@ __metadata:
   resolution: "packetevents-docs@workspace:."
   dependencies:
     "@astrojs/starlight": "npm:^0.37.3"
+    "@fontsource-variable/space-grotesk": "npm:^5.2.10"
     astro: "npm:^5.6.1"
     sharp: "npm:^0.34.2"
     starlight-ion-theme: "npm:^2.3.3"

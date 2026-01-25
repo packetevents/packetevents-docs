@@ -1,5 +1,8 @@
 :root {
+    /* define some tailwind colors */
     --red-700: oklch(50.5% 0.213 27.518);
+    /* change font */
+    --sl-font: "Space Grotesk Variable", sans-serif;
 }
 
 /* https://github.com/PaperMC/docs/blob/9ea4338f089fddce0e38e7e130a869c7066c9b14/src/styles/custom.css#L55-L60 */

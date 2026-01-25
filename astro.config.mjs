@@ -20,6 +20,7 @@ export default defineConfig({
                 ion(),
             ],
             customCss: [
+                "@fontsource-variable/space-grotesk/index.css",
                 "./src/styles/custom.css",
             ],
             components: {
