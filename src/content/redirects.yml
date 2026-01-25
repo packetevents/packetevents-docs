@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=../../../.astro/collections/redirects.schema.json
 getting-started: /introduction/development-setup/
+development-setup: /introduction/development-setup/
 prerequisites: /introduction/prerequisites/
 master: /setup-when-bundling/master/
 creating-your-packetevents-instance: /setup-when-bundling/master/
