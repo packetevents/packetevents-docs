@@ -5,6 +5,6 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.retrooper:packetevents-INSERT_MODULE_HERE:2.11.2")
+    implementation("com.github.retrooper:packetevents-INSERT_MODULE_HERE:$LATEST_PACKETEVENTS")
     // your other dependencies...
 }

@@ -4,6 +4,7 @@ description: Setup PacketEvents
 ---
 
 import {TabItem, Tabs, Code} from "@astrojs/starlight/components";
+import {expandVersions} from "../../../scripts/versions.ts";
 import codeDependencyMaven from '../../../assets/snippets/dependency_maven.xml?raw';
 import codeDependencyGradle from '../../../assets/snippets/dependency_gradle.kts?raw';
 
@@ -33,10 +34,20 @@ modules that we support:
 
 <Tabs>
     <TabItem label={"Maven"}>
-        <Code code={codeDependencyMaven} del={"INSERT_MODULE_HERE"} title={"pom.xml"} lang={"xml"}/>
+        <Code
+            code={expandVersions(codeDependencyMaven)}
+            del={"INSERT_MODULE_HERE"}
+            title={"pom.xml"}
+            lang={"xml"}
+        />
     </TabItem>
     <TabItem label={"Gradle"}>
-        <Code code={codeDependencyGradle} del={"INSERT_MODULE_HERE"} title={"build.gradle[.kts]"} lang={"kt"}/>
+        <Code
+            code={expandVersions(codeDependencyGradle)}
+            del={"INSERT_MODULE_HERE"}
+            title={"build.gradle[.kts]"}
+            lang={"kt"}
+        />
     </TabItem>
 </Tabs>
 

@@ -3,6 +3,7 @@ title: A Beginner's Guide to Bundling
 ---
 
 import {TabItem, Tabs, Code, Steps} from "@astrojs/starlight/components";
+import {expandVersions} from "../../../scripts/versions.ts";
 import codeBundlingMaven from '../../../assets/snippets/bundling_maven.xml?raw';
 import codeBundlingGradle from '../../../assets/snippets/bundling_gradle.kts?raw';
 import codeBundlingIncludeMaven from '../../../assets/snippets/bundling_include_maven.xml?raw';
@@ -46,10 +47,20 @@ by this documentation page in its current state.
 
 <Tabs>
     <TabItem label={"Maven"}>
-        <Code code={codeBundlingMaven} del={"INSERT_MODULE_HERE"} title={"pom.xml"} lang={"xml"}/>
+        <Code
+            code={expandVersions(codeBundlingMaven)}
+            del={"INSERT_MODULE_HERE"}
+            title={"pom.xml"}
+            lang={"xml"}
+        />
     </TabItem>
     <TabItem label={"Gradle"}>
-        <Code code={codeBundlingGradle} del={"INSERT_MODULE_HERE"} title={"build.gradle[.kts]"} lang={"kt"}/>
+        <Code
+            code={expandVersions(codeBundlingGradle)}
+            del={"INSERT_MODULE_HERE"}
+            title={"build.gradle[.kts]"}
+            lang={"kt"}
+        />
     </TabItem>
 </Tabs>
 

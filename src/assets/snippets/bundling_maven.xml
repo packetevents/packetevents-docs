@@ -14,7 +14,7 @@
 <dependency>
     <groupId>com.github.retrooper</groupId>
     <artifactId>packetevents-INSERT_MODULE_HERE</artifactId>
-    <version>2.11.2</version>
+    <version>$LATEST_PACKETEVENTS</version>
     <scope>compile</scope>
 </dependency>
 <!-- your other dependencies... -->

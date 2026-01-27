@@ -5,6 +5,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly("com.github.retrooper:packetevents-INSERT_MODULE_HERE:2.11.2")
+    compileOnly("com.github.retrooper:packetevents-INSERT_MODULE_HERE:$LATEST_PACKETEVENTS")
     // your other dependencies...
 }
