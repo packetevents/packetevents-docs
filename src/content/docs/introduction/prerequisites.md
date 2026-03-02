@@ -22,8 +22,7 @@ Another promise that is made to you is that dropped packets are rescheduled. TCP
 packet delivery. This is a promise that other protocols, such as UDP/IP, do not deliver on.
 
 :::note[Packet Rescheduling]
-Suppose the server is instructed to send packet **SetHealth** to player **jeb_**. If the server fails to send *
-*SetHealth** to **jeb_** for any reason, then the server will simply try again. This, of course, assumes the server is
+Suppose the server is instructed to send packet **SetHealth** to player **jeb_**. If the server fails to send **SetHealth** to **jeb_** for any reason, then the server will simply try again. This, of course, assumes the server is
 never shut down or restarted.
 :::
 
@@ -43,8 +42,7 @@ Here's an analogy we tend to use:
 
 :::note[Concurrency Example]
 A customer orders a meal, and the chef wants to minimize the wait time. The kitchen team has three workers: **Steve**
-prepares the rice, **Alex** cooks the chicken, and **Retrooper** makes the coffee. If **Steve**, **Alex**, and *
-**Retrooper** work concurrently, the customer waits only for the slowest task to finish. If they work sequentially, the
+prepares the rice, **Alex** cooks the chicken, and **Retrooper** makes the coffee. If **Steve**, **Alex**, and **Retrooper** work concurrently, the customer waits only for the slowest task to finish. If they work sequentially, the
 customer must wait for all three tasks to be completed one after another, which takes much longer.
 :::
 
