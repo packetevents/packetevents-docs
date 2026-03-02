@@ -18,7 +18,7 @@ receive **SetHealth** before **SpawnEntity**. If for some reason the server fail
 delay sending **SpawnEntity** until **SetHealth** is sent successfully.
 :::
 
-Another promise that is made to you is that dropped packets are rescheduled. TCP/IP is know for its high reliability on
+Another promise that is made to you is that dropped packets are rescheduled. TCP/IP is known for its high reliability on
 packet delivery. This is a promise that other protocols, such as UDP/IP, do not deliver on.
 
 :::note[Packet Rescheduling]
@@ -44,7 +44,7 @@ Here's an analogy we tend to use:
 :::note[Concurrency Example]
 A customer orders a meal, and the chef wants to minimize the wait time. The kitchen team has three workers: **Steve**
 prepares the rice, **Alex** cooks the chicken, and **Retrooper** makes the coffee. If **Steve**, **Alex**, and *
-*Retrooper** work concurrently, the customer waits only for the slowest task to finish. If they work sequentially, the
+**Retrooper** work concurrently, the customer waits only for the slowest task to finish. If they work sequentially, the
 customer must wait for all three tasks to be completed one after another, which takes much longer.
 :::
 
