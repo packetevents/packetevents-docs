@@ -31,12 +31,12 @@ public class ExampleListener implements PacketListener {
             // Check if the action is an ATTACK and not a right click
             if (action == WrapperPlayClientInteractEntity.InteractAction.ATTACK) {
                 // Execute our code here
-                doSomething(user, attackPacket.getEntityId());
+                doSomething(user, packet.getEntityId());
             }
         }
     }
 
-    public void doSomething(User user, int entityId) {
+    public void doSomething(User user, int entityID) {
         // Find the Bukkit entity that was attacked (WARNING: unsafe method!)
         Entity entity = SpigotConversionUtil.getEntityById(null, entityID);
 
