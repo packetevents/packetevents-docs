@@ -54,12 +54,13 @@ public class ExampleListener implements PacketListener {
             entityId = packet.getEntityId();
         }
         else if (event.getPacketType() == PacketType.Play.Client.ATTACK) {
+            // They attacked the Armor Stand
             WrapperPlayClientAttack attack = new WrapperPlayClientAttack(event);
             entityId = attack.getEntityId();
         }
         
 
-        // Check if the client interacted with the Armor Stand
+        // Check if the client interacted with (or attacked) the Armor Stand
         if (entityId != -1 && this.fakeArmorStand != null && entityId == this.fakeArmorStand.entityId) {
             // Increment their clicks
             int clicks = this.fakeArmorStand.clicks.getOrDefault(user.getUUID(), 0) + 1;
