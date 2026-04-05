@@ -10,7 +10,7 @@ In this example, we will develop a Minecraft Bukkit plugin that will spawn a cli
 providing a click counter for each player.
 
 First, we'll spawn an Armor Stand for the client whenever they join the server. Next, we'll wait for the client to
-send an "Interact" packet. We'll check if the client had interacted with our client-sided Armor Stand.
+send an "Attack" packet (added in Minecraft 26.1) or an "Interact" packet. We'll check if the client had interacted with our client-sided Armor Stand.
 If so, we'll increment the click counter for that player.
 
 Previously, we mentioned that packets provide direct communication with the client, allowing us to give each user

@@ -61,9 +61,8 @@ event.markForReEncode(true);
 This tells PacketEvents to actually write your changes, otherwise your changes may be lost.
 :::
 
-As shown, packet modification is also simple to implement with PacketEvents. Let's code a (slightly) more useful task
-using PacketEvents. The following code intercepts the 'Interact Entity' packet, which is sent whenever the client
-interacts with or attacks an entity, and then sends a message to the client informing them that they have attacked an
+Let's code a (slightly) more useful task
+using PacketEvents. The following code intercepts the 'Attack' and 'Interact Entity' packets. On Minecraft 26.1 and newer, the 'Attack' packet is sent by a player whenever they attack an entity, and the "Interact Entity" packet is sent whenever a player right clicks an entity. On Minecraft versions older than 26.1, it works a little differently. The "Interact Entity" packet is sent by a player whenever they left click or right click on an entity. The code in this example will support both legacy and modern versions of Minecraft. Once we detect that an entity has been attacked, we will send a message to the player informing them that they have attacked an
 entity:
 
 <Code code={codeExampleInteractListener} title="ExampleListener.java" lang="java"/>

@@ -45,16 +45,21 @@ public class ExampleListener implements PacketListener {
     @Override
     public void onPacketReceive(PacketReceiveEvent event) {
         User user = event.getUser();
-        if (event.getPacketType() != PacketType.Play.Client.INTERACT_ENTITY) {
-            return;
+        int entityId = -1; // Not an attack or interaction packet if entityId remains -1
+        if (event.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY) {
+            // They interacted with an entity.
+            WrapperPlayClientInteractEntity packet = new WrapperPlayClientInteractEntity(event);
+            // Retrieve that entity's ID
+            entityId = packet.getEntityId();
         }
-        // They interacted with an entity.
-        WrapperPlayClientInteractEntity packet = new WrapperPlayClientInteractEntity(event);
-        // Retrieve that entity's ID
-        int entityId = packet.getEntityId();
+        else if (event.getPacketType() == PacketType.Play.Client.ATTACK) {
+            WrapperPlayClientAttack attack = new WrapperPlayClientInteractEntity(event);
+            entityId = packet.getEntityId();
+        }
+        
 
         // Check if the client interacted with the Armor Stand
-        if (this.fakeArmorStand != null && entityId == this.fakeArmorStand.entityId) {
+        if (entityId != -1 && this.fakeArmorStand != null && entityId == this.fakeArmorStand.entityId) {
             // Increment their clicks
             int clicks = this.fakeArmorStand.clicks.getOrDefault(user.getUUID(), 0) + 1;
             this.fakeArmorStand.clicks.put(user.getUUID(), clicks);
